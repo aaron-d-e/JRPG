@@ -1,4 +1,4 @@
-#include "drawing.h"
+#include "hero.h"
 #include <iostream>
 
 using namespace std;
@@ -34,7 +34,6 @@ int main() {
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     SDL_RenderClear(renderer);
 
-	//draw bottom right rectangle
     {
         SDL_Rect rect;
         rect.x = 100;
@@ -42,7 +41,13 @@ int main() {
         rect.w = 150;
         rect.h = 150;
 
-        drawRect(rect, renderer, 0, 0, 0, 255);
+        Uint8 r = 0;
+        Uint8 g = 0;
+        Uint8 b = 0;
+        Uint8 a = 255;
+
+        Hero hero(rect);
+		hero.drawHeroRect(renderer);
     }
 
     SDL_RenderPresent(renderer);
