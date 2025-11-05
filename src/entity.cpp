@@ -5,6 +5,8 @@ Entity::Entity(SDL_Rect rect) {
     this->rect.y = rect.y;
     this->rect.w = rect.w;
     this->rect.h = rect.h;
+
+    health = 100;
 }
 
 Entity::Entity(SDL_Rect rect, Uint8 r, Uint8 g, Uint8 b, Uint8 a) {
@@ -17,6 +19,8 @@ Entity::Entity(SDL_Rect rect, Uint8 r, Uint8 g, Uint8 b, Uint8 a) {
     this->g = g;
     this->b = b;
     this->a = a;
+
+    health = 100;
 }
 
 void Entity::drawEntityRect(SDL_Renderer *renderer) {
@@ -24,3 +28,10 @@ void Entity::drawEntityRect(SDL_Renderer *renderer) {
     SDL_RenderFillRect(renderer, &rect);
 }
 
+void Entity::takeDamage(int damage) {
+    if (this->health > 0) {
+        health -= damage;
+    }
+}
+
+void Hero::basicAttack(Entity *enemy) { enemy->takeDamage(baseDamage); }

@@ -1,7 +1,6 @@
 #include "debug.h"
 #include "entity.h"
 #include <iostream>
-#include <stack>
 
 using namespace std;
 
@@ -45,15 +44,11 @@ int main() {
     enemyRect.w = 150;
     enemyRect.h = 150;
 
-    stack<Enemy *> enemies;
-
     Hero *hero = new Hero(heroRect, 0, 0, 255, 1);
     rectLog(cout, heroRect, "Hero Rect");
 
     Enemy *enemy = new Enemy(enemyRect, 255, 0, 0, 1);
     rectLog(cout, enemyRect, "Enemy Rect");
-
-    enemies.push(enemy);
 
     bool running = true;
     SDL_Event event;
@@ -67,11 +62,7 @@ int main() {
                     running = false;
                 }
                 if (event.key.keysym.sym == SDLK_SPACE) {
-                    if (!enemies.empty()) {
-                        hero->basicAttack(enemies.top());
-                        damageLog(cout, enemies.top()->getHealth(),
-                                  "Enemy Health");
-                    }
+                    hero->basicAttack(enemy);
                 }
             }
         }
@@ -81,31 +72,14 @@ int main() {
 
         // game render here
         hero->drawEntityRect(renderer);
+        enemy->drawEntityRect(renderer);
 
-        if (!enemies.empty()) {
-            if (enemies.top()->getHealth() > 0) {
-                enemies.top()->drawEntityRect(renderer);
-            }
-            else {
-                Enemy *top = enemies.top();
-                enemies.pop();
-                delete top;
-            }
-        }
-        else {
-            cout << "You won, shutting down..." << endl;
-            running = false;
-            SDL_Delay(1500);
-        }
-
+        damageLog(cout, enemy->getHealth(), "Enemy Health");
         // present render
         SDL_RenderPresent(renderer);
     }
 
     // clean up
-    if (hero) {
-        delete hero;
-    }
 
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);

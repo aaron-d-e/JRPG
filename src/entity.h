@@ -8,7 +8,9 @@ class Entity {
     Entity(SDL_Rect rect, Uint8 r, Uint8 g, Uint8 b, Uint8 a); // colorized
     void drawEntityRect(SDL_Renderer *renderer);
 
-  private:
+    void takeDamage(int damage); 
+
+  protected:
     SDL_Rect rect;
     Uint8 r, g, b, a;
     int health;
@@ -20,11 +22,12 @@ class Hero : public Entity {
     Hero(SDL_Rect rect, Uint8 r, Uint8 g, Uint8 b, Uint8 a)
         : Entity(rect, r, g, b, a) {}
 
-	void basicAttack(Entity enemy, int damage);
+    int getHealth() { return health; }
+    void basicAttack(Entity *enemy);
 
   private:
-	int level;
-
+    int level;
+    int baseDamage = 20;
 };
 
 class Enemy : public Entity {
@@ -32,6 +35,11 @@ class Enemy : public Entity {
     Enemy(SDL_Rect rect) : Entity(rect) {}
     Enemy(SDL_Rect rect, Uint8 r, Uint8 g, Uint8 b, Uint8 a)
         : Entity(rect, r, g, b, a) {}
+
+    int getHealth() { return health; }
+
+  private:
+	SDL_Rect main, left, right; 
 };
 
 #endif
