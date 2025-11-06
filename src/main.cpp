@@ -1,6 +1,7 @@
 #include "debug.h"
 #include "levels.h"
 #include <iostream>
+#include <stack>
 using namespace std;
 
 int main() {
@@ -53,7 +54,6 @@ int main() {
 
     enemies.push(enemy);
 
-    LoadLevel(1, renderer);
 
     bool running = true;
     SDL_Event event;
