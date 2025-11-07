@@ -230,7 +230,8 @@ CMakeFiles/unnamed.dir/src/level.cpp.o: /home/aaron/unnamed/src/level.cpp \
  /usr/include/SDL2/SDL_render.h /usr/include/SDL2/SDL_shape.h \
  /usr/include/SDL2/SDL_system.h /usr/include/SDL2/SDL_timer.h \
  /usr/include/SDL2/SDL_version.h /usr/include/SDL2/SDL_locale.h \
- /usr/include/SDL2/SDL_misc.h /usr/include/c++/15.2.1/fstream \
+ /usr/include/SDL2/SDL_misc.h /usr/include/c++/15.2.1/cassert \
+ /usr/include/assert.h /usr/include/c++/15.2.1/fstream \
  /usr/include/c++/15.2.1/istream /usr/include/c++/15.2.1/ios \
  /usr/include/c++/15.2.1/iosfwd /usr/include/c++/15.2.1/bits/stringfwd.h \
  /usr/include/c++/15.2.1/bits/memoryfwd.h \
@@ -318,13 +319,7 @@ CMakeFiles/unnamed.dir/src/level.cpp.o: /home/aaron/unnamed/src/level.cpp \
  /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/basic_file.h \
  /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/c++io.h \
  /usr/include/c++/15.2.1/bits/fstream.tcc \
- /usr/include/c++/15.2.1/iostream /usr/include/c++/15.2.1/map \
- /usr/include/c++/15.2.1/bits/stl_tree.h \
- /usr/include/c++/15.2.1/ext/aligned_buffer.h \
- /usr/include/c++/15.2.1/bits/node_handle.h \
- /usr/include/c++/15.2.1/bits/stl_map.h \
- /usr/include/c++/15.2.1/bits/stl_multimap.h \
- /usr/include/c++/15.2.1/bits/erase_if.h /usr/include/c++/15.2.1/vector \
+ /usr/include/c++/15.2.1/iostream /usr/include/c++/15.2.1/vector \
  /usr/include/c++/15.2.1/bits/stl_uninitialized.h \
  /usr/include/c++/15.2.1/bits/stl_vector.h \
  /usr/include/c++/15.2.1/bits/stl_bvector.h \

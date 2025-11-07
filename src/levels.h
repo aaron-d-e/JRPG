@@ -3,9 +3,9 @@
 #pragma once
 
 #include "entity.h"
+#include <cassert>
 #include <fstream>
 #include <iostream>
-#include <map>
 #include <vector>
 using namespace std;
 
@@ -19,11 +19,27 @@ class GameManager {
     //  gets stores in a csv for reload each start, gamemanager updates this csv
 
   public:
-    void LoadFiles();
+    GameManager(int level);
+    ~GameManager();
+
+    void Init();
+
+    void RenderEnemies(SDL_Renderer *renderer);
+
+    int GetEnemyCount();
+
+  private:
+    // load level file into filename
+    void LoadFile();
+    // set values from file
+    void ReadFile();
 
   private:
     int level;
+    int locationIndex;
+    int numOfEnemies;
+    string filename;
+    SDL_Rect locations[4];
     vector<Entity *> enemies;
-    map<int, string> levelToFile;
 };
 #endif

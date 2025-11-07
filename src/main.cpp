@@ -32,28 +32,21 @@ int main() {
         return 1;
     }
 
+    GameManager game(0);
+
+    game.Init();
+    cout << "Number of Enemies: " << game.GetEnemyCount() << endl;
+
     SDL_Rect heroRect;
     heroRect.x = 250;
     heroRect.y = HEIGHT - 400;
     heroRect.w = 150;
     heroRect.h = 150;
 
-    SDL_Rect enemyRect;
-    enemyRect.x = WIDTH - 150 - 250;
-    enemyRect.y = 400;
-    enemyRect.w = 150;
-    enemyRect.h = 150;
-
-    stack<Enemy *> enemies;
+    SDL_Rect enemyRect = {WIDTH - 150 - 250, 400, 150, 150};
 
     Hero *hero = new Hero(heroRect, 0, 0, 255, 1);
     rectLog(cout, heroRect, "Hero Rect");
-
-    Enemy *enemy = new Enemy(enemyRect, 255, 0, 0, 1);
-    rectLog(cout, enemyRect, "Enemy Rect");
-
-    enemies.push(enemy);
-
 
     bool running = true;
     SDL_Event event;
@@ -67,11 +60,6 @@ int main() {
                     running = false;
                 }
                 if (event.key.keysym.sym == SDLK_SPACE) {
-                    if (!enemies.empty()) {
-                        hero->basicAttack(enemies.top());
-                        damageLog(cout, enemies.top()->getHealth(),
-                                  "Enemy Health");
-                    }
                 }
             }
         }
@@ -82,15 +70,8 @@ int main() {
         // game render here
         hero->drawEntityRect(renderer);
 
-        if (!enemies.empty()) {
-            if (enemies.top()->getHealth() > 0) {
-                enemies.top()->drawEntityRect(renderer);
-            }
-            else {
-                Enemy *top = enemies.top();
-                enemies.pop();
-                delete top;
-            }
+        if (game.GetEnemyCount() > 0) {
+            game.RenderEnemies(renderer);
         }
         else {
             cout << "You won, shutting down..." << endl;
