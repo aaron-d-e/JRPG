@@ -1,124 +1,96 @@
 #include "debug.h"
 #include "levels.h"
 #include <iostream>
-#include <stack>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_render.h>
+#include <SDL2/SDL_surface.h>
 using namespace std;
 
-int main() {
-
+int main()
+{
     const int WIDTH = 1200;
     const int HEIGHT = 1000;
 
-    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+    if (SDL_Init(SDL_INIT_VIDEO) != 0)
+    {
         cerr << "SDL_Init Error: " << SDL_GetError() << endl;
         return 1;
     }
 
-    SDL_Window *window = SDL_CreateWindow(
+    SDL_Window* window = SDL_CreateWindow(
         "SDL2 + CMake on Arch Linux", SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, SDL_WINDOW_SHOWN);
 
-    if (!window) {
+    if (!window)
+    {
         cerr << "SDL_CreateWindow Error: " << SDL_GetError() << endl;
         SDL_Quit();
         return 1;
     }
 
-    SDL_Renderer *renderer =
+    SDL_Renderer* renderer =
         SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
-    if (!renderer) {
+    if (!renderer)
+    {
         cerr << "SDL_CreateRenderer Error: " << SDL_GetError() << endl;
         return 1;
     }
 
-    //---------------------------------------------------------//
+    int flags = IMG_INIT_PNG;
+    int initStatus = IMG_Init(flags);
+    if ((initStatus & flags) != flags)
+    {
+        cout << "SDL2_Image format not initialized (might not be available)"
+             << endl;
+    }
 
-    SDL_Rect heroRect;
-    heroRect.x = 250;
-    heroRect.y = HEIGHT - 400;
-    heroRect.w = 150;
-    heroRect.h = 150;
+    SDL_Surface* image;
+    image = IMG_Load("images/blastoise.png");
+    if (!image)
+    {
+        cout << "Image could not be loaded." << endl;
+    }
 
-    SDL_Rect enemyRect = {WIDTH - 150 - 250, 400, 150, 150};
-
-    Hero *hero = new Hero(heroRect, 0, 0, 255, 1);
-    rectLog(cout, heroRect, "Hero Rect");
+    SDL_Texture* testPNG = SDL_CreateTextureFromSurface(renderer, image);
 
     bool running = true;
-    bool levelChanged = true;
-    int level = 0;
     SDL_Event event;
-    GameManager *game;
-    while (running) {
-        if (levelChanged) {
-            game = new GameManager(level);
-            cout << "Loading level: " << level << endl;
-            game->Init();
-            levelChanged = false;
-        }
-
-        while (SDL_PollEvent(&event)) {
-            if (event.type == SDL_QUIT) {
+    while (running)
+    {
+        while (SDL_PollEvent(&event))
+        {
+            if (event.type == SDL_QUIT)
+            {
                 running = false;
             }
-            else if (event.type == SDL_KEYDOWN) {
-                if (event.key.keysym.sym == SDLK_ESCAPE) {
+            else if (event.type == SDL_KEYDOWN)
+            {
+                if (event.key.keysym.sym == SDLK_ESCAPE)
+                {
                     running = false;
-                }
-                if (event.key.keysym.sym == SDLK_1  && game->GetLoadedEnemies() > 0) {
-                    Entity *enemy = game->GetTargetEnemy(0);
-                    if (enemy != NULL) {
-                        hero->BasicAttack(enemy);
-                    }
-                    SDL_Delay(100);
-                }
-                else if (event.key.keysym.sym == SDLK_2 && game->GetLoadedEnemies() > 1) {
-                    Entity *enemy = game->GetTargetEnemy(1);
-                    if (enemy != NULL) {
-                        hero->BasicAttack(enemy);
-                    }
-                    SDL_Delay(100);
-                }
-                else if (event.key.keysym.sym == SDLK_3 && game->GetLoadedEnemies() > 2) {
-                    Entity *enemy = game->GetTargetEnemy(2);
-                    if (enemy != NULL) {
-                        hero->BasicAttack(enemy);
-                    }
-                    SDL_Delay(100);
                 }
             }
         }
+
         // clear the scene
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
         SDL_RenderClear(renderer);
 
-        // game render here
-        hero->DrawEntityRect(renderer);
-
-        if (game->GetEnemyCount() > 0) {
-            game->RenderEnemies(renderer);
-        }
-        else {
-            cout << "You won, changing levels..." << endl;
-            levelChanged = true;
-            SDL_RenderPresent(renderer);
-            SDL_Delay(1500);
-        }
+        SDL_RenderCopy(renderer, testPNG, NULL, NULL);
 
         // present render
         SDL_RenderPresent(renderer);
-
-        if (levelChanged) {
-            delete game;
-            level++;
-        }
     }
 
-    // clean up
-    if (hero) {
-        delete hero;
-    }
+    // quit sdl2 image
+    IMG_Quit();
+
+    // free sdl surface
+    SDL_FreeSurface(image);
+
+    // destroy texture
+    SDL_DestroyTexture(testPNG);
 
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);

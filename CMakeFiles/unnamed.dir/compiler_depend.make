@@ -997,7 +997,6 @@ CMakeFiles/unnamed.dir/src/main.cpp.o: src/main.cpp \
   /usr/include/c++/15.2.1/bits/cpp_type_traits.h \
   /usr/include/c++/15.2.1/bits/cxxabi_forced.h \
   /usr/include/c++/15.2.1/bits/cxxabi_init_exception.h \
-  /usr/include/c++/15.2.1/bits/deque.tcc \
   /usr/include/c++/15.2.1/bits/exception.h \
   /usr/include/c++/15.2.1/bits/exception_defines.h \
   /usr/include/c++/15.2.1/bits/exception_ptr.h \
@@ -1033,13 +1032,11 @@ CMakeFiles/unnamed.dir/src/main.cpp.o: src/main.cpp \
   /usr/include/c++/15.2.1/bits/stl_algobase.h \
   /usr/include/c++/15.2.1/bits/stl_bvector.h \
   /usr/include/c++/15.2.1/bits/stl_construct.h \
-  /usr/include/c++/15.2.1/bits/stl_deque.h \
   /usr/include/c++/15.2.1/bits/stl_function.h \
   /usr/include/c++/15.2.1/bits/stl_iterator.h \
   /usr/include/c++/15.2.1/bits/stl_iterator_base_funcs.h \
   /usr/include/c++/15.2.1/bits/stl_iterator_base_types.h \
   /usr/include/c++/15.2.1/bits/stl_pair.h \
-  /usr/include/c++/15.2.1/bits/stl_stack.h \
   /usr/include/c++/15.2.1/bits/stl_uninitialized.h \
   /usr/include/c++/15.2.1/bits/stl_vector.h \
   /usr/include/c++/15.2.1/bits/streambuf.tcc \
@@ -1064,7 +1061,6 @@ CMakeFiles/unnamed.dir/src/main.cpp.o: src/main.cpp \
   /usr/include/c++/15.2.1/cwctype \
   /usr/include/c++/15.2.1/debug/assertions.h \
   /usr/include/c++/15.2.1/debug/debug.h \
-  /usr/include/c++/15.2.1/deque \
   /usr/include/c++/15.2.1/exception \
   /usr/include/c++/15.2.1/ext/alloc_traits.h \
   /usr/include/c++/15.2.1/ext/atomicity.h \
@@ -1083,7 +1079,6 @@ CMakeFiles/unnamed.dir/src/main.cpp.o: src/main.cpp \
   /usr/include/c++/15.2.1/ostream \
   /usr/include/c++/15.2.1/pstl/pstl_config.h \
   /usr/include/c++/15.2.1/sstream \
-  /usr/include/c++/15.2.1/stack \
   /usr/include/c++/15.2.1/stdexcept \
   /usr/include/c++/15.2.1/stdlib.h \
   /usr/include/c++/15.2.1/streambuf \
@@ -1368,14 +1363,6 @@ unnamed: /usr/lib/Scrt1.o \
 /usr/lib/libSDL2_mixer.so:
 
 /usr/lib/crti.o:
-
-/usr/include/c++/15.2.1/deque:
-
-/usr/include/c++/15.2.1/bits/stl_stack.h:
-
-/usr/include/c++/15.2.1/bits/stl_deque.h:
-
-/usr/include/c++/15.2.1/bits/deque.tcc:
 
 /usr/include/c++/15.2.1/bits/sstream.tcc:
 
@@ -1814,8 +1801,6 @@ CMakeFiles/unnamed.dir/src/entity.cpp.o:
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/tmmintrin.h:
 
 /usr/include/SDL2/SDL_haptic.h:
-
-/usr/include/c++/15.2.1/stack:
 
 /usr/include/SDL2/SDL_locale.h:
 
