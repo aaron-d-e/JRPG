@@ -39,3 +39,37 @@ SpriteSheet::SpriteSheet(SDL_Renderer* renderer, const string& filename,
     int rows = sheetHeight / frameHeight;
     totalFrames = framesPerRow * rows;
 }
+
+SpriteSheet::~SpriteSheet()
+{
+    SDL_DestroyTexture(texture);
+}
+
+// getter functions
+SDL_Texture* SpriteSheet::getTexture() const
+{
+    return texture;
+}
+
+int SpriteSheet::getFrameHeight() const
+{
+    return frameHeight;
+}
+
+int SpriteSheet::getFrameWidth() const
+{
+    return frameWidth;
+}
+
+int SpriteSheet::getTotalFrames() const
+{
+    return totalFrames;
+}
+
+SDL_Rect SpriteSheet::getFrameRect(int frameIndex) const
+{
+    int row = frameIndex / framesPerRow;
+    int col = frameIndex % framesPerRow;
+
+    return {col * frameWidth, row * frameHeight, frameWidth, frameHeight};
+}
