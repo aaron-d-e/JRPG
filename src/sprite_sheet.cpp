@@ -66,6 +66,8 @@ int SpriteSheet::getTotalFrames() const
     return totalFrames;
 }
 
+// calculates the row and col index and returns the SDL_Rect of that sprite
+// index
 SDL_Rect SpriteSheet::getFrameRect(int frameIndex) const
 {
     int row = frameIndex / framesPerRow;
