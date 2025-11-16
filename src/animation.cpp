@@ -11,7 +11,34 @@ Animation::Animation(const vector<int>& frameIndices, float framesPerSecond)
 
 void Animation::update(float deltaTime)
 {
+    // exit if the animation is done and loop is turned off
+    if (finished && !looping)
+    {
+        return;
+    }
+
+    // increase deltatime and find frameduration
     this->currentTime += deltaTime;
+    float frameDuration = 1.0 / framesPerSecond;
+
+    while (currentTime >= frameDuration)
+    {
+        currentTime -= frameDuration;
+        currentIndex++;
+
+        if (currentIndex >= frameIndices.size())
+        {
+            if (looping)
+            {
+                currentIndex = 0;
+            }
+            else
+            {
+                currentIndex = frameIndices.size() - 1;
+                finished = true;
+            }
+        }
+    }
 }
 
 void Animation::reset()

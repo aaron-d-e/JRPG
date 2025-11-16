@@ -861,6 +861,7 @@ CMakeFiles/unnamed.dir/src/main.cpp.o: src/main.cpp \
   /usr/include/SDL2/SDL_haptic.h \
   /usr/include/SDL2/SDL_hidapi.h \
   /usr/include/SDL2/SDL_hints.h \
+  /usr/include/SDL2/SDL_image.h \
   /usr/include/SDL2/SDL_joystick.h \
   /usr/include/SDL2/SDL_keyboard.h \
   /usr/include/SDL2/SDL_keycode.h \
@@ -1363,6 +1364,8 @@ unnamed: /usr/lib/Scrt1.o \
 /usr/lib/libSDL2_mixer.so:
 
 /usr/lib/crti.o:
+
+/usr/include/SDL2/SDL_image.h:
 
 /usr/include/c++/15.2.1/bits/sstream.tcc:
 
