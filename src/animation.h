@@ -2,6 +2,8 @@
 #define ANIMATION_H
 
 #include <vector>
+#include <SDL2/SDL_image.h>
+#include "sprite_sheet.h"
 using namespace std;
 #pragma once
 
@@ -23,6 +25,13 @@ class Animation
     int currentIndex;
     bool looping;
     bool finished;
+};
+
+class AnimationRender
+{
+   public:
+    static void render(SDL_Renderer* renderer, const SpriteSheet& sheet,
+                       const Animation& animation, const SDL_Rect& destRect);
 };
 
 #endif

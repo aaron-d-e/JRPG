@@ -70,8 +70,6 @@ void AnimationRender::render(SDL_Renderer* renderer, const SpriteSheet& sheet,
                              const SDL_Rect& destRect)
 {
     int frameIndex = animation.getCurrentFrameIndex();
-    SDL_Rect srcRect = sheet.getFrameRect(frameIndex);
+    SDL_Rect sheetRect = sheet.getFrameRect(frameIndex);
     SDL_Texture* texture = sheet.getTexture();
-
-    SDL_RenderCopy(renderer, texture, &srcRect, &destRect);
 }
