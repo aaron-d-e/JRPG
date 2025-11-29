@@ -1,8 +1,10 @@
 #ifndef HERO_H
 #define HERO_H
 
+#include <SDL2/SDL_render.h>
 #include <iostream>
 #include "animations/sprite_sheet.h"
+#include "animations/animation.h"
 #pragma once
 
 class Hero
@@ -20,6 +22,25 @@ class Hero
    protected:
     SDL_Rect dest;
     int health;
+};
+
+class MainHero : public Hero
+{
+   public:
+    MainHero();
+
+    void TakeDamage(int damage);
+    void BasicAttack(/* enemy goes here */);
+
+    void SetSpriteSheet(SDL_Renderer* renderer, string filename, int frameWidth,
+                        int frameHeight);
+
+    void chooseAnimation(string animName);
+
+   private:
+    // TODO: make a container of available aniamtions
+    SpriteSheet spriteSheet;
+    Animation* currentAnim;
 };
 
 #endif
